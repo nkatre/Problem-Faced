@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <title>Evaluation of Graduate Faculty</title> 
+
+   <!--<script type='text/javascript' src='https://www.google.com/jsapi'></script> 
+  <script type="text/javascript" src="jquery-latest.js"></script> 
+  <script src="https://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>-->
+  
+   <!--<link rel="stylesheet" type="text/css"  href="https://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css"/>-->
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="jquery.tablesorter.min.js"></script>  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/hot-sneaks/jquery-ui.css">
+  <link rel="stylesheet" href="themes/blue/style.css" type="text/css" media="print, projection, screen" />
+  <script>
+	$(function() {
+		$( "#tabs" ).tabs();
+	});
+	$(function() {
+		$( "input[type=submit], button" )
+		  .button()
+	  });
+	// extend jquery.tablesorter to properly sort numbers against ones with commas.
+	// the default jquery.tablesorter does not have this functionality.
+	jQuery.tablesorter.addParser({ id: "fancyNumber", is: function(s) { return /^[0-9]?[0-9,\.]*$/.test(s); }, format: function(s) { return jQuery.tablesorter.formatFloat( s.replace(/,/g,'') ); }, type: "numeric" });
+  </script>
+  <script type="text/javascript">
+	$(window).load(function() {
+		$(".loader").fadeOut("slow");
+	})
+  </script>
+</head>
+<script>
+
+/*$('div.ui-page').live("swipeleft", function(){
+var nextpage = $(this).next('div[data-role="page"]');
+if (nextpage.length > 0) {
+$.mobile.changePage(nextpage, "slide", false);
+}
+});
+$('div.ui-page').live("swiperight", function(){
+var prevpage = $(this).prev('div[data-role="page"]');
+if (prevpage.length > 0) { 
+$.mobile.changePage(prevpage, {transition: "slide",
+reverse: true});
+}
+});
+*/
+var JTable = function() {};
+JTable.Setup = function() {
+    var table = $('.jtable');
+    $('caption', table).addClass('ui-state-default');
+    $('th', table).addClass('ui-state-default');
+    $('td', table).addClass('ui-widget-content');
+    $(table).delegate('tr', 'hover', function() {
+        $('td', $(this)).toggleClass('ui-state-hover');
+    });
+    $(table).delegate('tr', 'click', function() {
+        $('td', $(this)).toggleClass('ui-state-highlight');
+    });
+};
+</script>
+ 
+<style>
+#tabs{
+	width: 90%;	
+}
+.content{
+
+}
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+</style>
+
+
+<body> 
+<div class="loader"></div>
+ <?php
+ require_once('../../Connections/grad_programs.php');
+ ?>
+<div id="tabs">
+<ul>
+<li><a href="#page_2_all">Contribution to Graduate <br />Student Research</a></li>
+<li><a href="#page_3">Effectiveness in Advancing <br />and Graduating Students</a></li>
+<li><a href="#page_4">Effectiveness in Enabling <br />Doctoral Students to Complete Degree</a></li>
+<li><a href="#page_5">Contribution to Interdisciplinary/Interdepartmental<br /> Graduate Student Research</a></li>
+<li><a href="#page_6">Other <br />Statistics</a></li>
+</ul>
+ 
+<div data-role="page" data-theme="b" id="page_2_all">
+	
+     <div data-role="header"><h3>Evaluation of Graduate Faculty</h3>
+  	 
+     <form class='smaller-text' action="../initial/faculty_productivity_dev_1.php">
+    	<input type="submit" value="Return to Search">
+	</form>
+  	
+    </div>
+    <style type="text/css">
+body {
+}
+.ui-page { background-color:#FFF  
+}
+.ui-tabs-anchor{
+	font-size: 70%;	
+}
+.smaller-text{
+	font-size:70%;
+}
+
+/* Smartphone landscape  */
+@media only screen and (min-width: 12.5em) and (orientation: landscape) {
+	.display-scroll-bar {
+		overflow-x: auto;
+		display: block;
+	}
+}
+/* Smartphone portrait  */
+@media only screen and (min-width: 12.5em) and (orientation: portrait) {
+	.display-scroll-bar {
+		overflow-x: auto;
+		display: block;
+	}
+	
+}
+/* IPAD landscape  */
+@media only screen and (min-width: 40.5em) and (orientation: landscape) {
+	.display-scroll-bar {
+		overflow-x: auto;
+		display: table;
+	}
+}
+/* IPAD portrait  */
+@media only screen and (min-width: 30.5em) and (orientation: portrait) {
+	.display-scroll-bar {
+		overflow-x: auto;
+		display: block;
+	}
+}
+/* Desktop landscape  */
+@media only screen and (min-width: 45.5em) and (orientation: landscape) {
+	.display-scroll-bar {
+		overflow-x: auto;
+		display: table;
+	}
+}
+/* Desktop portrait  */
+@media only screen and (min-width: 30.5em) and (orientation: portrait) {
+	.display-scroll-bar {
+		overflow-x: auto;
+		display: block;
+	}
+}
+
+</style>
+
+   <div data-role="content" class="content">
+        
+        <?php
+		
+		if(true)
+		{
+			
+			$htmla = "";
+		
+
+ 		//$htmla.="<center><h3>$college_val</h3></center><center><h3>Contribution to Graduate Student Research</h3></center>";
+         //echo $htmla;
+ 		
+
+  		
+       // $emplid = $_POST["emplid_search"];
+		//$temp = $_POST["temp"];
+		//echo "emplid $emplid  temp $temp";
+  ?>	
+	<div style="font:bold "> 
+    <center>
+   
+		<?php 
+			error_reporting(E_ALL);
+			ini_set('display_errors', 1);
+			#echo "College Val:".$college_val."<br />";
+			#echo "Department Val:".$department_val."<br />";
+			#echo "Program Val:".$program_val."<br />";
+			//require_once("grad_data_2.php");
+			$inside_group_val = '0';
+			/*$query = "SELECT * from grad_faculty_ind_distinct_plus ";
+			
+			$result = mysql_query($query) or die(mysql_error());
+			
+			while($row = mysql_fetch_assoc($result)){
+				foreach($row as $cname => $cvalue){
+					print "$cname: $cvalue\t";
+				}
+				print "\r\n";
+			}*/
+			if (isset($_POST['group_val'])) {
+				$group_val = trim($_POST['group_val']);
+				//$fname = trim($_POST['fname']);
+				$inside_group_val = '1';
+			    if ($group_val == 'college') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.college_id,sum(a.1a) as 1a,sum(a.1b) as 1b,sum(a.1c) as 1c,sum(a.1d) as 1d,sum(a.1e) as 1e,sum(a.1f) as 1f,sum(a.1g) as 1g from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_colleges c where a.emplid = b.emplid and b.college_id = c.college_id and b.college_id != '05' group by c.description order by c.description ";
+				}
+				if ($group_val == 'program') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.program_id,sum(a.1a) as 1a,sum(a.1b) as 1b,sum(a.1c) as 1c,sum(a.1d) as 1d,sum(a.1e) as 1e,sum(a.1f) as 1f,sum(a.1g) as 1g from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_programs c where a.emplid = b.emplid and b.program_id = c.program_id  group by c.description order by c.description ";
+				}
+				if ($group_val == 'department') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Department</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+				
+					$query = "select c.description as name,c.department_id,sum(a.1a) as 1a,sum(a.1b) as 1b,sum(a.1c) as 1c,sum(a.1d) as 1d,sum(a.1e) as 1e,sum(a.1f) as 1f,sum(a.1g) as 1g from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_departments c where a.emplid = b.emplid and b.department_id = c.department_id  group by c.description order by c.description ";
+				}
+			}
+			if (isset($_POST['lname'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$lname = trim($_POST['lname']);
+				$fname = trim($_POST['fname']);
+			    $clause = " and trim(b.name) like '%$lname%$fname%'";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank,b.administrator from grad_programs.answer_1 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			if (isset($_POST['emplid_search'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$emplid_search = trim($_POST['emplid_search']);
+			    $clause = " and trim(a.emplid) = '$emplid_search' ";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank ,b.administrator from grad_programs.answer_1 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+	
+			if (isset($_POST["college_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_colleges where college_id = '" . mysql_real_escape_string($_POST['college_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$college_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College: $college_name</h3></center>";
+				$college_val = trim($_POST['college_val']);
+			    $clause = " and trim(b.college_id) = '$college_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["program_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_programs where program_id = '" . mysql_real_escape_string($_POST['program_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$program_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $program_name</h3></center>";
+				$program_val = trim($_POST['program_val']);
+			    $clause = " and trim(b.program_id) = '$program_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["department_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_departments where department_id = '" . mysql_real_escape_string($_POST['department_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$department_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $department_name</h3></center>";
+				$department_val = trim($_POST['department_val']);
+			    $clause = " and trim(b.department_id) = '$department_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST['tenure_val'])) {
+				$clause = "";
+				$clause_2 = "";
+				$clause_3 = "";
+				$clause_4 = "";
+				$inside_group_val = '0';
+				$tenure_val = trim($_POST['tenure_val']);
+				$gender_val = trim($_POST['gender_val']);
+				$years_val = trim($_POST['years_val']);
+				$general_field_val = trim($_POST['general_field_val']);
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By: <br />Tenure Rank: $tenure_val<br /> No of Years at NC State: $years_val <br />Gender: $gender_val <br />General Field of Study: $general_field_val</h3></center>";
+			    if ($tenure_val != "All"){
+					$clause = " and trim(b.tenure_rank) = '$tenure_val' ";
+				}
+				if ($gender_val != "All"){
+					$clause_2 = " and trim(b.gender) = '$gender_val' ";	
+				}
+				if ($years_val != "Any Value"){
+					if ($years_val == "0-9")
+					$clause_3 = " and b.years_at_ncsu < 10 ";	
+					else if ($years_val == "10+")
+					$clause_3 = " and b.years_at_ncsu >= 10 ";
+				}
+				if ($general_field_val != "All"){
+				    $clause_4 = " and trim(b.description) = '$general_field_val' ";	
+				}
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_1 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $clause_2 $clause_3 $clause_4 $order_clause"; 
+			}
+			//add other searches here
+			?>
+			<?php $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			$results = 0;
+			if (isset($_POST['lname'])){
+				$results = mysql_num_rows($result);
+				if ($results < 1){
+					echo "<center><h4 style='color:red'>The name could not be found. Please press the Return to Search button.</h4></center>";
+				}
+			}
+			if (isset($_POST['emplid_search'])){
+				$results = mysql_num_rows($result);
+				if ($results < 1){
+					echo "<center><h4 style='color:red'>The emplid could not be found. Please press the Return to Search button.</h4></center>";
+				}
+			}
+		?>
+         
+        <button class='admin-button' style="font-size:70%;">Non-Administrators Only</button><br />
+        <button onclick="submit_form_1()"style="font-size:70%;">Export to Excel</button>
+       	<!--<button onclick="tableToExcel('output_results', 'Contribution to Graduate Student Research')"style="font-size:70%;">Export to Excel</button>-->
+        <br><b><small>Click on the column header to sort ascending/descending.</small></b><br />     
+     <table align="center"  id = "output_results" class="tablesorter jtable display-scroll-bar" >
+      <thead>
+    <tr>
+    <th>Name</th>
+    <?php if (!isset($_POST['group_val'])) { ?>
+    <th>Admin. Responsibilities</th><th>Emplid</th><th>Tenure Status</th>
+    <?php } ?>
+    <th >a. Number of Advisory Commitees Chaired  for Doctoral Students</th>
+    <th>b. Number of Advisory Commitees Chaired  for Thesis Students</th>
+     <th>c. Number of Advisory Commitees Served on (other than chair, co-chair or grad rep) for Thesis and Dissertation Students</th>
+      <th>d. Number of Graduate Students Research Assistants Supported (in student-years)</th>
+      <th>e. Amount of Research Funding (Dollars) as PI</th>
+      <th>f. Research Funding Dollars/Funded Students</th>
+      <th> Score ((3xa) + (2xb) + c + d)</th></tr>
+      </thead>
+      <tbody>
+      
+      <?php
+	  $non_admin_only = '0';
+	  if (isset($_POST['group_val'])) {
+		  if ($group_val == "college") {
+			  $query = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_1_college_b a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_2_all" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "college") { ?>
+                  <input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td><td align=right>".$row_2["G"]."</td></tr>";
+			} #end while
+			$non_admin_only = '1';
+			$query_2 = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_1_college_a a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_2_all" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "college") { ?>
+				<input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td><td align=right>".$row_2["G"]."</td></tr>";
+
+		   }#end while
+		} #end if college
+		if ($group_val == "program") {
+			  $query = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_1_program_b a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_2_all" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "program") { ?>
+                  <input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td><td align=right>".$row_2["G"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_1_program_a a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_2_all" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "program") { ?>
+				<input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td><td align=right>".$row_2["G"]."</td></tr>";
+
+		   }#end while
+		}
+		if ($group_val == "department") {
+			  $query_2 = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_1_department_b a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+			  $result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result_2)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_2_all" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "department") { ?>
+                  <input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button role="button" type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td><td align=right>".$row_2["G"]."</td></tr>";
+			} #end while
+			$query = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_1_department_a a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+	  		$result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_2_all" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "department") { ?>
+				<input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button  type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td><td align=right>".$row_2["G"]."</td></tr>";
+
+		   }#end while
+		}
+		   
+	} else {
+		  while ($row = mysql_fetch_assoc($result)) {
+		   echo "<tr class='admin-data'><td>".$row["name"]."</td><td class='admin-value'>".$row["administrator"]."</td><td>".$row["emplid"]."</td><td>".$row["tenure_rank"]."</td><td align=right>".number_format($row["1a"])."</td><td align=right>".number_format($row["1b"])."</td><td align=right>".number_format($row["1c"])."</td><td align=right>".number_format($row["1d"])."</td><td align=right>".number_format($row["1e"])."</td><td align=right>".number_format($row["1f"])."</td><td align=right>".number_format($row["1g"])."</td></tr>";
+		  }
+	  }
+		?>	
+        </tbody>
+      </table>
+		<form class='smaller-text' action="faculty_productivity_dev_1_excel_table_1.php" id="form_1" method="post">
+         <input name="group_val" type="hidden" value="<?php echo $group_val; ?>"  />
+         <input name="query" type="hidden" value="<?php echo $query; ?>"  />
+         <input name="query_2" type="hidden" value="<?php echo $query_2; ?>"  />
+         <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+         <input name="inside_group_val" type="hidden" value="<?php echo $inside_group_val; ?>"  />
+        <!--<input class='smaller-text' type="submit" target="_blank" value="Export to Excel">-->
+		</form>
+    </center>
+    </div></div>
+<?php
+		
+
+	
+		
+		}
+	/*print "<pre>";
+	print_r($table_1);
+	print "</pre>";*/  
+		?>
+      
+        
+       
+     </div>
+     
+	
+     <!--<div  data-role="footer" data-id="persistent_navbar" data-position="fixed"><center><img src="http://www.ncsu.edu/brand/wp/wp-content/uploads/2012/03/125mobilelogo-blackonwhite-300x52.png" align="middle"></center></div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- #############     TAB 2     ############# -->
+<div data-role="page" data-theme="b" id="page_3">
+<div data-role="header"><h3>Evaluation of Graduate Faculty</h3>
+  	 
+     <form class='smaller-text' action="../initial/faculty_productivity_dev_1.php">
+    	<input type="submit" value="Return to Search">
+	</form>
+  
+    </div>
+    <style type="text/css">
+body {
+}
+.ui-page { background-color:#FFF  
+}
+.ui-tabs-anchor{
+	font-size: 70%;	
+}
+.smaller-text{
+	font-size:70%;
+}
+
+
+
+</style>
+
+   <div data-role="content" class="content">
+        
+        <?php
+		
+		if(true)
+		{
+			
+			$htmla = "";
+		
+
+ 		//$htmla.="<center><h3>$college_val</h3></center><center><h3>Contribution to Graduate Student Research</h3></center>";
+         //echo $htmla;
+ 		
+
+  		
+       // $emplid = $_POST["emplid_search"];
+		////$temp = $_POST["temp"];
+		//echo "emplid $emplid  temp $temp";
+  ?>	
+	<div style="font:bold "> 
+    <center>
+   
+		<?php 
+			#echo "College Val:".$college_val."<br />";
+			#echo "Department Val:".$department_val."<br />";
+			#echo "Program Val:".$program_val."<br />";
+			//require_once("grad_data_2.php");
+			$inside_group_val = '0';
+			
+			if (isset($_POST['group_val'])) {
+				$group_val = trim($_POST['group_val']);
+				//$fname = trim($_POST['fname']);
+				$inside_group_val = '1';
+			    if ($group_val == 'college') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.college_id,round(avg(a.A),2) as A,round(avg(a.B),2) as B,round(avg(a.C),2) as C,round(avg(a.D),2) as D,round(avg(a.E),2) as E,round(avg(a.F),2) as F from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_colleges c where a.emplid = b.emplid and b.college_id = c.college_id and b.college_id != '05' group by c.description order by c.description ";
+				}
+				if ($group_val == 'program') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.program_id,round(avg(a.A),2) as A,round(avg(a.B),2) as B,round(avg(a.C),2) as C,round(avg(a.D),2) as D,round(avg(a.E),2) as E,round(avg(a.F),2) as F from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_programs c where a.emplid = b.emplid and b.program_id = c.program_id  group by c.description order by c.description ";
+				}
+				if ($group_val == 'department') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Department</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+				
+					$query = "select c.description as name,c.department_id,round(avg(a.A),2) as A,round(avg(a.B),2) as B,round(avg(a.C),2) as C,round(avg(a.D),2) as D,round(avg(a.E),2) as E,round(avg(a.F),2) as F from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_departments c where a.emplid = b.emplid and b.department_id = c.department_id and a.F IS NOT NULL group by c.description order by c.description ";
+				}
+			}
+			if (isset($_POST['lname'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$lname = trim($_POST['lname']);
+				$fname = trim($_POST['fname']);
+			    $clause = " and trim(b.name) like '%$lname%$fname%'";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank,b.administrator from grad_programs.answer_2 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			if (isset($_POST['emplid_search'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$emplid_search = trim($_POST['emplid_search']);
+			    $clause = " and trim(a.emplid) = '$emplid_search' ";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank ,b.administrator from grad_programs.answer_2 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+	
+			if (isset($_POST["college_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_colleges where college_id = '" . mysql_real_escape_string($_POST['college_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$college_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College: $college_name</h3></center>";
+				$college_val = trim($_POST['college_val']);
+			    $clause = " and trim(b.college_id) = '$college_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["program_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_programs where program_id = '" . mysql_real_escape_string($_POST['program_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$program_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $program_name</h3></center>";
+				$program_val = trim($_POST['program_val']);
+			    $clause = " and trim(b.program_id) = '$program_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["department_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_departments where department_id = '" . mysql_real_escape_string($_POST['department_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$department_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $department_name</h3></center>";
+				$department_val = trim($_POST['department_val']);
+			    $clause = " and trim(b.department_id) = '$department_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST['tenure_val'])) {
+				$clause = "";
+				$clause_2 = "";
+				$clause_3 = "";
+				$clause_4 = "";
+				$inside_group_val = '0';
+				$tenure_val = trim($_POST['tenure_val']);
+				$gender_val = trim($_POST['gender_val']);
+				$years_val = trim($_POST['years_val']);
+				$general_field_val = trim($_POST['general_field_val']);
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By: <br />Tenure Rank: $tenure_val<br /> No of Years at NC State: $years_val <br />Gender: $gender_val <br />General Field of Study: $general_field_val</h3></center>";
+			    if ($tenure_val != "All"){
+					$clause = " and trim(b.tenure_rank) = '$tenure_val' ";
+				}
+				if ($gender_val != "All"){
+					$clause_2 = " and trim(b.gender) = '$gender_val' ";	
+				}
+				if ($years_val != "Any Value"){
+					if ($years_val == "0-9")
+					$clause_3 = " and b.years_at_ncsu < 10 ";	
+					else if ($years_val == "10+")
+					$clause_3 = " and b.years_at_ncsu >= 10 ";
+				}
+				if ($general_field_val != "All"){
+				    $clause_4 = " and trim(b.description) = '$general_field_val' ";	
+				}
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_2 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $clause_2 $clause_3 $clause_4 $order_clause"; 
+			}
+			//add other searches here
+			?>
+			<?php $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+		?>
+        <button class='admin-button' style="font-size:70%;">Non-Administrators Only</button><br />
+        <!--<button onclick="submit_form_2()" style="font-size:70%;">Export to Excel</button>-->
+        <button onclick="tableToExcel('output_results2', 'Effectiveness in Advancing and Graduating Students')"style="font-size:70%;">Export to Excel</button>
+        <br><b><small>Click on the column header to sort ascending/descending.</small></b><br />     
+     <table align="center"  id = "output_results2" class="tablesorter jtable display-scroll-bar">
+      <thead>
+    <tr>
+    <th>Name</th>
+    <?php if (!isset($_POST['group_val'])) { ?>
+    <th>Admin. Responsibilities<th>Emplid</th><th>Tenure Status</th>
+    <?php } ?>
+    <th>a. Average Time to Plan of Work as Chair or Co-chair for Doctoral Students (Months)</th>
+    <th>b. Average Time to Passing Prelim as Chair or Co-chair for Doctoral Students (Months)</th>
+     <th>c. Average Time to Degree as Chair or Co-chair for Doctoral Students Students (Months)</th>
+      <th>d. Average Time to Degree as Chair or Co-chair for Thesis Students (Months)</th>
+      <th>Score: Doctoral students:  a + b + c / number of students (lower score is better)</th>
+      <th>Score: Thesis students:  average time to degree (lower score is better)</th>
+      <!--<th> Score ((3xa) + (2xb) + c + d)</th></tr>-->
+      </thead>
+      <tbody>
+      
+      <?php
+	  if (isset($_POST['group_val'])) {
+		  if ($group_val == "college") {
+			  $query = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_2_college_b a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_3" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "college") { ?>
+                  <input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_2_college_a a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_3" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "college") { ?>
+				<input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td></tr>";
+
+		   }#end while
+		} #end if college
+		if ($group_val == "program") {
+			  $query = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_2_program_b a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_3" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "program") { ?>
+                  <input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_2_program_a a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_3" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "program") { ?>
+				<input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td></tr>";
+
+		   }#end while
+		}
+		if ($group_val == "department") {
+			  $query = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_2_department_b a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_3" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "department") { ?>
+                  <input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_2_department_a a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_3" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "department") { ?>
+				<input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D"]."</td><td align=right>".$row_2["E"]."</td><td align=right>".$row_2["F"]."</td></tr>";
+
+		   }#end while
+		}
+		   
+	} else {
+		  while ($row = mysql_fetch_assoc($result)) {
+		   echo "<tr class='admin-data'><td>".$row["name"]."</td><td class='admin-value'>".$row["administrator"]."</td><td>".$row["emplid"]."</td><td>".$row["tenure_rank"]."</td><td align=right>".sprintf('%0.2f', round($row["A"],1))."</td><td align=right>".sprintf('%0.2f', round($row["B"],1))."</td><td align=right>".sprintf('%0.2f', round($row["C"],1))."</td><td align=right>".sprintf('%0.2f', round($row["D"],1))."</td><td align=right>".sprintf('%0.2f', round($row["E"],1))."</td><td align=right>".sprintf('%0.2f', round($row["F"],1))."</td></tr>";#<td align=right>".$row["1g"]."</td></tr>";
+		  }
+	  }
+		?>	
+        </tbody>
+      </table>
+		<form class='smaller-text' action="faculty_productivity_dev_1_excel_table_2.php" id="form_2" method="post">
+         <input name="group_val" type="hidden" value="<?php echo $group_val; ?>"  />
+         <input name="query" type="hidden" value="<?php echo $query; ?>"  />
+         <input name="query_2" type="hidden" value="<?php echo $query_2; ?>"  />
+         <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+         <input name="inside_group_val" type="hidden" value="<?php echo $inside_group_val; ?>"  />
+        <!--<input class='smaller-text' type="submit" target="_blank" value="Export to Excel">-->
+		</form>
+    </center>
+    </div></div>
+<?php
+		
+
+	
+		
+		}
+		?>
+        
+        
+       
+     </div>
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- #############     TAB 3     ############# -->
+  <div data-role="page" data-theme="b" id="page_4">
+	
+     <div data-role="header"><h3>Evaluation of Graduate Faculty</h3>
+  	 
+     <form class='smaller-text' action="../initial/faculty_productivity_dev_1.php">
+    	<input type="submit" value="Return to Search">
+	</form>
+  
+    </div>
+    <style type="text/css">
+body {
+}
+.ui-page { background-color:#FFF  
+}
+.ui-tabs-anchor{
+	font-size: 70%;	
+}
+.smaller-text{
+	font-size:70%;
+}
+
+
+
+</style>
+
+   <div data-role="content" class="content">
+        
+        <?php
+		
+		if(true)
+		{
+			
+			$htmla = "";
+		
+
+ 		//$htmla.="<center><h3>$college_val</h3></center><center><h3>Contribution to Graduate Student Research</h3></center>";
+         //echo $htmla;
+ 		
+
+  		
+       // $emplid = $_POST["emplid_search"];
+		//$temp = $_POST["temp"];
+		//echo "emplid $emplid  temp $temp";
+  ?>	
+	<div style="font:bold "> 
+    <center>
+   
+		<?php 
+			#echo "College Val:".$college_val."<br />";
+			#echo "Department Val:".$department_val."<br />";
+			#echo "Program Val:".$program_val."<br />";
+			//require_once("grad_data_2.php");
+			$inside_group_val = '0';
+			/*$query = "SELECT a.* from answer_1 a";
+			
+			$result = mysql_query($query) or die(mysql_error());
+			
+			while($row = mysql_fetch_assoc($result)){
+				foreach($row as $cname => $cvalue){
+					print "$cname: $cvalue\t";
+				}
+				print "\r\n";
+			}*/
+			if (isset($_POST['group_val'])) {
+				$group_val = trim($_POST['group_val']);
+				//$fname = trim($_POST['fname']);
+				$inside_group_val = '1';
+			    if ($group_val == 'college') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.college_id, round(avg(a.A), 2) as A,round(avg(a.B), 2) as B,round(avg(a.C),2) as C,round(avg(a.D_1),2) as D_1,round(avg(a.D_2),2) as D_2,round(avg(a.E_1),2) as E_1,round(avg(a.E_2),2) as E_2,round(avg(a.F_1),2) as F_1,round(avg(a.F_2),2) as F_2,round(avg(a.F_3),2) as F_3 from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_colleges c where a.emplid = b.emplid and b.college_id = c.college_id and b.college_id != '05' group by c.description order by c.description ";
+					
+					/*$query = "select c.description as name,c.college_id from grad_programs.grad_colleges c group by c.description order by c.description ";*/
+				}
+				if ($group_val == 'program') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.program_id,round(avg(a.A), 2) as A,round(avg(a.B), 2) as B,round(avg(a.C),2) as C,round(avg(a.D_1),2) as D_1,round(avg(a.D_2),2) as D_2,round(avg(a.E_1),2) as E_1,round(avg(a.E_2),2) as E_2,round(avg(a.F_1),2) as F_1,round(avg(a.F_2),2) as F_2,round(avg(a.F_3),2) as F_3 from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_programs c where a.emplid = b.emplid and b.program_id = c.program_id  group by c.description order by c.description ";
+				}
+				if ($group_val == 'department') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Department</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+				
+					$query = "select c.description as name,c.department_id,round(avg(a.A), 2) as A,round(avg(a.B), 2) as B,round(avg(a.C),2) as C,round(avg(a.D_1),2) as D_1,round(avg(a.D_2),2) as D_2,round(avg(a.E_1),2) as E_1,round(avg(a.E_2),2) as E_2,round(avg(a.F_1),2) as F_1,round(avg(a.F_2),2) as F_2,round(avg(a.F_3),2) as F_3 from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_departments c where a.emplid = b.emplid and b.department_id = c.department_id group by c.description order by c.description ";
+				}
+			}
+			if (isset($_POST['lname'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$lname = trim($_POST['lname']);
+				$fname = trim($_POST['fname']);
+			    $clause = " and trim(b.name) like '%$lname%$fname%'";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank,b.administrator from grad_programs.answer_3 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			if (isset($_POST['emplid_search'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$emplid_search = trim($_POST['emplid_search']);
+			    $clause = " and trim(a.emplid) = '$emplid_search' ";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank ,b.administrator from grad_programs.answer_3 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+	
+			if (isset($_POST["college_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_colleges where college_id = '" . mysql_real_escape_string($_POST['college_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$college_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College: $college_name</h3></center>";
+				$college_val = trim($_POST['college_val']);
+			    $clause = " and trim(b.college_id) = '$college_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["program_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_programs where program_id = '" . mysql_real_escape_string($_POST['program_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$program_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $program_name</h3></center>";
+				$program_val = trim($_POST['program_val']);
+			    $clause = " and trim(b.program_id) = '$program_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["department_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_departments where department_id = '" . mysql_real_escape_string($_POST['department_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$department_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $department_name</h3></center>";
+				$department_val = trim($_POST['department_val']);
+			    $clause = " and trim(b.department_id) = '$department_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST['tenure_val'])) {
+				$clause = "";
+				$clause_2 = "";
+				$clause_3 = "";
+				$clause_4 = "";
+				$inside_group_val = '0';
+				$tenure_val = trim($_POST['tenure_val']);
+				$gender_val = trim($_POST['gender_val']);
+				$years_val = trim($_POST['years_val']);
+				$general_field_val = trim($_POST['general_field_val']);
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By: <br />Tenure Rank: $tenure_val<br /> No of Years at NC State: $years_val <br />Gender: $gender_val <br />General Field of Study: $general_field_val</h3></center>";
+			    if ($tenure_val != "All"){
+					$clause = " and trim(b.tenure_rank) = '$tenure_val' ";
+				}
+				if ($gender_val != "All"){
+					$clause_2 = " and trim(b.gender) = '$gender_val' ";	
+				}
+				if ($years_val != "Any Value"){
+					if ($years_val == "0-9")
+					$clause_3 = " and b.years_at_ncsu < 10 ";	
+					else if ($years_val == "10+")
+					$clause_3 = " and b.years_at_ncsu >= 10 ";
+				}
+				if ($general_field_val != "All"){
+				    $clause_4 = " and trim(b.description) = '$general_field_val' ";	
+				}
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_3 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $clause_2 $clause_3 $clause_4 $order_clause"; 
+			}
+			//add other searches here
+			?>
+			<?php $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+		?>
+         
+        <button class='admin-button' style="font-size:70%;">Non-Administrators Only</button><br />
+        <!--<button onclick="submit_form_3()"style="font-size:70%;">Export to Excel</button>-->
+        <button onclick="tableToExcel('output_results3', 'Effectiveness in Enabling Doctoral Students to Complete Degree')"style="font-size:70%;">Export to Excel</button>
+        <br><b><small>Click on the column header to sort ascending/descending.</small></b><br />     
+     <table align="center"  id = "output_results3" class="tablesorter jtable display-scroll-bar">
+      <thead>
+    <tr>
+    <th>Name</th>
+    <?php if (!isset($_POST['group_val'])) { ?>
+    <th>Admin. Responsibilities<th>Emplid</th><th>Tenure Status</th>
+    <?php } ?>
+    <th>a.	Six year completion rate as chair or co-chair</th>
+    <th>b. Eight-year year completion rate as chair or co-chair</th>
+     <th>c. Ten year completion rate as chair or co-chair</th>
+      <th>d_1. Rate of attrition in 8 year-cohorts as chair or co-chair</th>
+      <th>d_2. Number of students still enrolled after 8 years as chair or co- chair </th>
+      <th>e_1. Rate of  attrition in years 9 and 10 as chair or co-chair </th>
+      <th>e_2. Number of students still enrolled after 10 years as chair or co-chair </th>
+      <th>f_1. Number of students who leave the program before graduation during Years 1-5 as chair or co-chair for doctoral students.</th>
+      <th>f_2. Number of students who leave the program before graduation during Years 6-10 as chair or co-chair for doctoral students.</th>
+      <th>f_3. Number of students who leave the program before graduation during Years >10 as chair or co-chair for doctoral students.</th>
+      </tr>
+      </thead>
+      <tbody>
+      
+      <?php
+	  if (isset($_POST['group_val'])) {
+		  if ($group_val == "college") {
+			  $query = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_3_college_b a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_4" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "college") { ?>
+                  <input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D_1"]."</td><td align=right>".$row_2["D_2"]."</td><td align=right>".$row_2["E_1"]."</td><td align=right>".$row_2["E_2"]."</td><td align=right>".$row_2["F_1"]."</td><td align=right>".$row_2["F_2"]."</td><td align=right>".$row_2["F_3"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_3_college_a a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_4" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "college") { ?>
+				<input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D_1"]."</td><td align=right>".$row_2["D_2"]."</td><td align=right>".$row_2["E_1"]."</td><td align=right>".$row_2["E_2"]."</td><td align=right>".$row_2["F_1"]."</td><td align=right>".$row_2["F_2"]."</td><td align=right>".$row_2["F_3"]."</td></tr>";
+
+		   }#end while
+		} #end if college
+		if ($group_val == "program") {
+			  $query = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_3_program_b a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_4" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "program") { ?>
+                  <input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D_1"]."</td><td align=right>".$row_2["D_2"]."</td><td align=right>".$row_2["E_1"]."</td><td align=right>".$row_2["E_2"]."</td><td align=right>".$row_2["F_1"]."</td><td align=right>".$row_2["F_2"]."</td><td align=right>".$row_2["F_3"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_3_program_a a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_4" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "program") { ?>
+				<input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D_1"]."</td><td align=right>".$row_2["D_2"]."</td><td align=right>".$row_2["E_1"]."</td><td align=right>".$row_2["E_2"]."</td><td align=right>".$row_2["F_1"]."</td><td align=right>".$row_2["F_2"]."</td><td align=right>".$row_2["F_3"]."</td></tr>";
+
+		   }#end while
+		}
+		if ($group_val == "department") {
+			  $query = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_3_department_b a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_4" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "department") { ?>
+                  <input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D_1"]."</td><td align=right>".$row_2["D_2"]."</td><td align=right>".$row_2["E_1"]."</td><td align=right>".$row_2["E_2"]."</td><td align=right>".$row_2["F_1"]."</td><td align=right>".$row_2["F_2"]."</td><td align=right>".$row_2["F_3"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_3_department_a a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_4" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "department") { ?>
+				<input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td><td align=right>".$row_2["D_1"]."</td><td align=right>".$row_2["D_2"]."</td><td align=right>".$row_2["E_1"]."</td><td align=right>".$row_2["E_2"]."</td><td align=right>".$row_2["F_1"]."</td><td align=right>".$row_2["F_2"]."</td><td align=right>".$row_2["F_3"]."</td></tr>";
+
+		   }#end while
+		}
+		   
+	} else {
+		  while ($row = mysql_fetch_assoc($result)) {
+		   echo "<tr class='admin-data'><td>".$row["name"]."</td><td class='admin-value'>".$row["administrator"]."</td><td>".$row["emplid"]."</td><td>".$row["tenure_rank"]."</td><td align=right>".sprintf('%0.2f', round($row["A"],2))."</td><td align=right>".sprintf('%0.2f', round($row["B"],2))."</td><td align=right>".sprintf('%0.2f', round($row["C"],2))."</td><td align=right>".sprintf('%0.2f', round($row["D_1"],2))."</td><td align=right>".sprintf('%0.2f', round($row["D_2"],2))."</td><td align=right>".sprintf('%0.2f', round($row["E_1"],2))."</td><td align=right>".round($row["E_2"])."</td><td align=right>".round($row["F_1"])."</td><td align=right>".round($row["F_2"])."</td><td align=right>".round($row["F_3"])."</td></tr>";#<td align=right>".$row["1g"]."</td></tr>";
+		  }
+	  }
+		?>	
+        </tbody>
+      </table>
+		<form class='smaller-text' action="faculty_productivity_dev_1_excel_table_3.php" id="form_3" method="post">
+             <input name="group_val" type="hidden" value="<?php echo $group_val; ?>"  />
+             <input name="query" type="hidden" value="<?php echo $query; ?>"  />
+             <input name="query_2" type="hidden" value="<?php echo $query_2; ?>"  />
+             <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+             <input name="inside_group_val" type="hidden" value="<?php echo $inside_group_val; ?>"  />
+            <!--<input class='smaller-text' type="submit" target="_blank" value="Export to Excel">-->
+		</form>
+    </center>
+    </div></div>
+<?php
+		
+
+	
+		
+		}
+		?>
+        
+        
+       
+     </div>
+     
+
+     <!--<div  data-role="footer" data-id="persistent_navbar" data-position="fixed"><center><img src="http://www.ncsu.edu/brand/wp/wp-content/uploads/2012/03/125mobilelogo-blackonwhite-300x52.png" align="middle"></center></div>-->
+  
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- #############     TAB 4     ############# -->
+  <div data-role="page" data-theme="b" id="page_5">
+	
+     <div data-role="header"><h3>Evaluation of Graduate Faculty</h3>
+  	 
+     <form class='smaller-text' action="../initial/faculty_productivity_dev_1.php">
+    	<input type="submit" value="Return to Search">
+	</form>
+  
+    </div>
+    <style type="text/css">
+body {
+}
+.ui-page { background-color:#FFF  
+}
+.ui-tabs-anchor{
+	font-size: 70%;	
+}
+.smaller-text{
+	font-size:70%;
+}
+
+
+
+</style>
+   <div data-role="content" class="content">
+        
+        <?php
+		
+		if(true)
+		{
+			
+			$htmla = "";
+		
+
+ 		//$htmla.="<center><h3>$college_val</h3></center><center><h3>Contribution to Graduate Student Research</h3></center>";
+         //echo $htmla;
+ 		
+
+  		
+       // $emplid = $_POST["emplid_search"];
+		//$temp = $_POST["temp"];
+		//echo "emplid $emplid  temp $temp";
+  ?>	
+	<div style="font:bold "> 
+    <center>
+   
+		<?php 
+			#echo "College Val:".$college_val."<br />";
+			#echo "Department Val:".$department_val."<br />";
+			#echo "Program Val:".$program_val."<br />";
+			//require_once("grad_data_2.php");
+			$inside_group_val = '0';
+			/*$query = "SELECT a.* from answer_1 a";
+			
+			$result = mysql_query($query) or die(mysql_error());
+			
+			while($row = mysql_fetch_assoc($result)){
+				foreach($row as $cname => $cvalue){
+					print "$cname: $cvalue\t";
+				}
+				print "\r\n";
+			}*/
+			if (isset($_POST['group_val'])) {
+				$group_val = trim($_POST['group_val']);
+				//$fname = trim($_POST['fname']);
+				$inside_group_val = '1';
+			    if ($group_val == 'college') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.college_id,sum(a.A) as A,sum(a.B) as B,sum(a.C) as C from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_colleges c where a.emplid = b.emplid and b.college_id = c.college_id and b.college_id != '05' group by c.description order by c.description ";
+				}
+				if ($group_val == 'program') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+					
+					$query = "select c.description as name,c.program_id,sum(a.A) as A,sum(a.B) as B,sum(a.C) as C from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_programs c where a.emplid = b.emplid and b.program_id = c.program_id  group by c.description order by c.description ";
+				}
+				if ($group_val == 'department') {
+					echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Department</h3></center>";
+					$clause = " group by b.college_id ";	
+			    	$order_clause = "order by b.college_id";
+				
+					$query = "select c.description as name,c.department_id,sum(a.A) as A,sum(a.B) as B,sum(a.C) as C from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b,grad_programs.grad_departments c where a.emplid = b.emplid and b.department_id = c.department_id  group by c.description order by c.description ";
+				}
+			}
+			if (isset($_POST['lname'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$lname = trim($_POST['lname']);
+				$fname = trim($_POST['fname']);
+			    $clause = " and trim(b.name) like '%$lname%$fname%'";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank,b.administrator from grad_programs.answer_4 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			if (isset($_POST['emplid_search'])) {
+				$inside_group_val = '0';
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Faculty Member</h3></center>";
+				$emplid_search = trim($_POST['emplid_search']);
+			    $clause = " and trim(a.emplid) = '$emplid_search' ";	
+			    $order_clause = "order by b.name";
+				$query = "select a.*, b.name, b.tenure_rank ,b.administrator from grad_programs.answer_4 a, grad_programs.grad_faculty_ind_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+	
+			if (isset($_POST["college_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_colleges where college_id = '" . mysql_real_escape_string($_POST['college_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$college_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By College: $college_name</h3></center>";
+				$college_val = trim($_POST['college_val']);
+			    $clause = " and trim(b.college_id) = '$college_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["program_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_programs where program_id = '" . mysql_real_escape_string($_POST['program_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$program_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $program_name</h3></center>";
+				$program_val = trim($_POST['program_val']);
+			    $clause = " and trim(b.program_id) = '$program_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST["department_val"])) {
+				$inside_group_val = '0';
+				$new_query = "select description from grad_programs.grad_departments where department_id = '" . mysql_real_escape_string($_POST['department_val']) . "';";
+				$new_result = mysql_query($new_query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+				while($row = mysql_fetch_assoc($new_result)){
+					foreach($row as $cname => $cvalue){
+						$department_name = "$cvalue";
+					}
+				}
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By Program: $department_name</h3></center>";
+				$department_val = trim($_POST['department_val']);
+			    $clause = " and trim(b.department_id) = '$department_val' ";	
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $order_clause";
+			}
+			
+			if (isset($_POST['tenure_val'])) {
+				$clause = "";
+				$clause_2 = "";
+				$clause_3 = "";
+				$clause_4 = "";
+				$inside_group_val = '0';
+				$tenure_val = trim($_POST['tenure_val']);
+				$gender_val = trim($_POST['gender_val']);
+				$years_val = trim($_POST['years_val']);
+				$general_field_val = trim($_POST['general_field_val']);
+				echo "<center><h3>Contribution to Graduate Student Research for Previous Five Year Period<br />Display By: <br />Tenure Rank: $tenure_val<br /> No of Years at NC State: $years_val <br />Gender: $gender_val <br />General Field of Study: $general_field_val</h3></center>";
+			    if ($tenure_val != "All"){
+					$clause = " and trim(b.tenure_rank) = '$tenure_val' ";
+				}
+				if ($gender_val != "All"){
+					$clause_2 = " and trim(b.gender) = '$gender_val' ";	
+				}
+				if ($years_val != "Any Value"){
+					if ($years_val == "0-9")
+					$clause_3 = " and b.years_at_ncsu < 10 ";	
+					else if ($years_val == "10+")
+					$clause_3 = " and b.years_at_ncsu >= 10 ";
+				}
+				if ($general_field_val != "All"){
+				    $clause_4 = " and trim(b.description) = '$general_field_val' ";	
+				}
+			    $order_clause = "order by b.name";
+				$query = "select distinct a.*, b.name, b.tenure_rank,b.administrator  from grad_programs.answer_4 a, grad_programs.grad_faculty_full_distinct b where a.emplid = b.emplid $clause $clause_2 $clause_3 $clause_4 $order_clause"; 
+			}
+			//add other searches here
+			?>
+			<?php $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+		?>
+         
+        <button class='admin-button' style="font-size:70%;">Non-Administrators Only</button><br />
+        <!--<button onclick="submit_form_4()"style="font-size:70%;">Export to Excel</button>-->
+        <button onclick="tableToExcel('output_results4', 'Contribution to Inderdisciplinary/Interdepartmental Graduate Student Research')"style="font-size:70%;">Export to Excel</button>
+        <br><b><small>Click on the column header to sort ascending/descending.</small></b><br />     
+     <table align="center"  id = "output_results4" class="tablesorter jtable display-scroll-bar" >
+      <thead>
+    <tr>
+    <th>Name</th>
+    <?php if (!isset($_POST['group_val'])) { ?>
+    <th>Admin. Responsibilities<th>Emplid</th><th>Tenure Status</th>
+    <?php } ?>
+    <th>a. Number of Advisory Commitees Served on (other than grad rep) in a department outside the faculty member's home department</th>
+    <th>b. Number of Advisory Commitees Chaired or Co-chaired in interdisciplinary programs</th>
+     <th>c. Number of Advisory Commitees Served on (other than chair, co-chair or grad rep) in interdisciplinary programs</th>
+      </thead>
+      <tbody>
+      
+      <?php
+	  if (isset($_POST['group_val'])) {
+		  if ($group_val == "college") {
+			  $query = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_4_college_b a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_5" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "college") { ?>
+                  <input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.college_id, a.* from grad_programs.answer_4_college_a a, grad_programs.grad_colleges c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_5" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "college") { ?>
+				<input name='college_val' type = 'hidden' value='<?php echo $row_2["college_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td></tr>";
+
+		   }#end while
+		} #end if college
+		if ($group_val == "program") {
+			  $query = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_4_program_b a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_5" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "program") { ?>
+                  <input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.program_id, a.* from grad_programs.answer_4_program_a a, grad_programs.grad_programs c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_5" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "program") { ?>
+				<input name='program_val' type = 'hidden' value='<?php echo $row_2["program_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td></tr>";
+
+		   }#end while
+		}
+		if ($group_val == "department") {
+			  $query = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_4_department_b a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+			  $result = mysql_query($query, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			  while ($row_2 = mysql_fetch_assoc($result)) {
+				  echo "<tr class='admin-data-group-1'><td class='id'>";
+				  ?>
+                  <form data-ajax="false" method="POST" id="group_val_x" action="#page_5" enctype="application/x-www-form-urlencoded">
+				  <?php if ($group_val == "department") { ?>
+                  <input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+                  <?php } ?>
+                  <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+                  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+                  </form>
+				  <?php 
+				  echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td></tr>";
+			} #end while
+			$query_2 = "select distinct c.description as name, c.department_id, a.* from grad_programs.answer_4_department_a a, grad_programs.grad_departments c where a.name = c.description order by c.description ";
+	  		$result_2 = mysql_query($query_2, $grad_programs) or trigger_error('Query failed: ' . mysql_error($grad_programs), E_USER_ERROR);
+			while ($row_2 = mysql_fetch_assoc($result_2)){
+				echo "<tr class='admin-data-group-2'><td class='id'>";
+			   ?>
+			   <form data-ajax="false" method="POST" id="group_val_x" action="#page_5" enctype="application/x-www-form-urlencoded">
+				<?php if ($group_val == "department") { ?>
+				<input name='department_val' type = 'hidden' value='<?php echo $row_2["department_id"];?>' >
+				<?php } ?>
+				<input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+				  <button type="submit" name="btn_003" value="0" data-corners="true" data-inline="true" data-mini="true"><?php echo $row_2["name"];?></button>
+				</form>
+		<?php 
+			   echo "</td><td align=right>".$row_2["A"]."</td><td align=right>".$row_2["B"]."</td><td align=right>".$row_2["C"]."</td></tr>";
+
+		   }#end while
+		}
+		   
+	  } else {
+		  while ($row = mysql_fetch_assoc($result)) {
+		   echo "<tr class='admin-data'><td>".$row["name"]."</td><td class='admin-value'>".$row["administrator"]."</td><td>".$row["emplid"]."</td><td>".$row["tenure_rank"]."</td><td align=right>".$row["A"]."</td><td align=right>".$row["B"]."</td><td align=right>".$row["C"]."</td></tr>";
+		  }
+	  }
+		?>	
+        </tbody>
+      </table>
+		<form class='smaller-text' action="faculty_productivity_dev_1_excel_table_4.php" id="form_4" method="post">
+             <input name="group_val" type="hidden" value="<?php echo $group_val; ?>"  />
+             <input name="query" type="hidden" value="<?php echo $query; ?>"  />
+             <input name="query_2" type="hidden" value="<?php echo $query_2; ?>"  />
+             <input type="hidden" class='adminHiddenField' value="false" name="administrators_included"/>
+             <input name="inside_group_val" type="hidden" value="<?php echo $inside_group_val; ?>"  />
+            <!--<input class='smaller-text' type="submit" target="_blank" value="Export to Excel">-->
+		</form>
+    </center>
+    </div></div>
+<?php
+		
+
+	
+		
+		}
+		?>
+        
+        
+       
+     </div>
+     
+
+     <!--<div  data-role="footer" data-id="persistent_navbar" data-position="fixed"><center><img src="http://www.ncsu.edu/brand/wp/wp-content/uploads/2012/03/125mobilelogo-blackonwhite-300x52.png" align="middle"></center></div>-->
+  
+    
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- #############     TAB 5     ############# -->
+  <div data-role="page" data-theme="b" id="page_6">
+	
+     <div data-role="header"><h3>Evaluation of Graduate Faculty</h3>
+  	 
+     <form class='smaller-text' action="../initial/faculty_productivity_dev_1.php">
+    	<input type="submit" value="Return to Search">
+	</form>
+  
+    </div>
+    <style type="text/css">
+body {
+}
+.ui-page { background-color:#FFF  
+}
+.ui-tabs-anchor{
+	font-size: 70%;	
+}
+.smaller-text{
+	font-size:70%;
+}
+
+
+
+</style>
+
+   <div data-role="content" class="content">
+        
+        
+       
+     </div>
+     
+	
+     <!--<div  data-role="footer" data-id="persistent_navbar" data-position="fixed"><center><img src="http://www.ncsu.edu/brand/wp/wp-content/uploads/2012/03/125mobilelogo-blackonwhite-300x52.png" align="middle"></center></div>-->
+
+
+  </div>
+  </div>
+  <script>
+  	var administrators_included;// = false;
+	<?php if (isset($_POST['group_val'])) {?>
+		function update_tablesorter(){
+			$("#output_results").trigger("update") 
+			$("#output_results2").trigger("update") 
+			$("#output_results3").trigger("update") 
+			$("#output_results4").trigger("update") 
+			//$("#output_results5").trigger("update") 
+		}
+		$(".admin-data-group-2").hide();
+		
+		$(".admin-button").click(function(){
+			if($("span", this).html() == 'Non-Administrators Only'){
+				set_admin_true();
+				$(".admin-button").each(function(){
+					$("span", this).text("Administrators and Non-Administrators");
+				});
+				update_tablesorter();
+				$(".admin-data-group-1").hide();
+				$(".admin-data-group-2").show();
+				
+			}
+			
+			else{
+				set_admin_false();
+				$(".admin-button").each(function(){
+					$("span", this).html("Non-Administrators Only");
+				});
+				$("tr.admin-data").each(function(){
+					$(this).show();
+				});
+				update_tablesorter();
+				$(".admin-data-group-2").hide();
+				$(".admin-data-group-1").show();
+			}
+		});
+		
+	<?php } else { ?>
+		$(document).ready(function() {
+		<?php 
+		if (isset($_POST['administrators_included'])) {
+			if($_POST['administrators_included'] == 'true'){
+				?>
+				$(".admin-button").each(function(){
+					$("span", this).text("Administrators and Non-Administrators");
+					$("tr.admin-data").each(function(){
+						$this = $(this)
+						var value = $this.find("td.admin-value").html();
+						if (value == 'yes'){
+							$this.hide();
+						}
+					});
+				});
+				<?php 
+			}else{
+				?>
+				$(".admin-button").each(function(){
+					$("span", this).text("Non-Administrators Only");
+					
+				});
+				<?php
+				
+			}
+			
+		}
+		
+		?>
+		$(".admin-data-group-2").hide();/*.each(function(){
+			$(this).hide();
+		});*/
+	});
+		$(".admin-button").click(function(){
+			if($("span", this).html() == 'Non-Administrators Only'){
+				set_admin_true();
+				$(".admin-button").each(function(){
+					$("span", this).text("Administrators and Non-Administrators");
+				});
+				$("tr.admin-data").each(function(){
+					$this = $(this)
+					var value = $this.find("td.admin-value").html();
+					if (value == 'yes'){
+						$this.hide("highlight", 1000);
+					}
+				});
+			}
+			else{
+				set_admin_false()
+				$(".admin-button").each(function(){
+					$("span", this).html("Non-Administrators Only");
+				});
+				$("tr.admin-data").each(function(){
+					$(this).show();
+				});
+			}
+		});
+		<?php } ?>
+	
+	<?php if (isset($_POST['group_val'])) {?>
+	$(document).ready(function() { 
+        $("#output_results").tablesorter({
+				headers:{
+					1:{
+						sorter:'fancyNumber'	
+					},
+					2:{
+						sorter:'fancyNumber'	
+					},
+					3:{
+						sorter:'fancyNumber'	
+					},
+					4:{
+						sorter:'fancyNumber'	
+					},
+					5:{
+						sorter:'fancyNumber'	
+					},
+					6:{
+						sorter:'fancyNumber'	
+					},
+					7:{
+						sorter:'fancyNumber'	
+					}
+				}
+			});  // same as table id
+		$("#output_results2").tablesorter();  // same as table id
+		$("#output_results3").tablesorter();  // same as table id
+		$("#output_results4").tablesorter({
+				headers:{
+					1:{
+						sorter:'fancyNumber'	
+					},
+					2:{
+						sorter:'fancyNumber'	
+					},
+					3:{
+						sorter:'fancyNumber'	
+					}
+				}
+			});  // same as table id
+		//$("#output_results5").tablesorter();  // same as table id
+    } 
+	);
+	<?php } else { ?>
+		$(document).ready(function() { 
+		
+        $("#output_results").tablesorter({
+				// extend jquery.tablesorter to properly sort numbers against ones with commas.
+				// the default jquery.tablesorter does not have this functionality.
+				headers:{
+					4:{
+						sorter:'fancyNumber'	
+					},
+					5:{
+						sorter:'fancyNumber'	
+					},
+					6:{
+						sorter:'fancyNumber'	
+					},
+					7:{
+						sorter:'fancyNumber'	
+					},
+					8:{
+						sorter:'fancyNumber'	
+					},
+					9:{
+						sorter:'fancyNumber'	
+					},
+					10:{
+						sorter:'fancyNumber'	
+					}
+				}
+			});  // same as table id
+		$("#output_results2").tablesorter();  // same as table id
+		$("#output_results3").tablesorter();  // same as table id
+		$("#output_results4").tablesorter({
+				headers:{
+					4:{
+						sorter:'fancyNumber'	
+					},
+					5:{
+						sorter:'fancyNumber'	
+					},
+					6:{
+						sorter:'fancyNumber'	
+					}
+				}
+			});  // same as table id
+		//$("#output_results5").tablesorter();  // same as table id
+    } 
+	);
+	<?php } ?>
+	
+	function set_admin_true() {
+		var elements = document.getElementsByClassName('adminHiddenField');
+		i = elements.length;
+		while(i--){
+			elements[i].value = "true";
+		}
+		
+	}
+	function set_admin_false() {
+		var elements = document.getElementsByClassName('adminHiddenField');
+		i = elements.length;
+		while(i--){
+			elements[i].value = "false";
+		}
+	}
+	// jQuery ui tabs display off screen if the answer table is has run off. To fix this, we scroll back
+	// to the top of the page using the scrollTop(0) function.
+	// We delay the call using setTimeout with a delay of 10ms 
+	function scroll_top()
+	{
+	   $(document).ready(function () {
+       	 $(this).scrollTop(0);
+    	});
+	}
+	$(document).ready(function () {
+       setTimeout(scroll_top, 10);
+    });
+	$(function() {
+    JTable.Setup();
+	});
+
+	/*$("#form_1").submit(function(event) {
+		
+		var url = "faculty_productivity_dev_1_excel_table_1.php";
+	
+		$.ajax({
+			   isUpload:true,
+			   type: "POST",
+			   url: url,
+			   data: $("#form_1").serialize(),
+			   success: function(data)
+			   {
+				   console.log(data);
+				   console.log("yay");
+			   }
+			 });
+		event.preventDefault();
+	});*/
+	function submit_form_1()
+	{
+		 document.getElementById("form_1").submit();
+	}
+	function submit_form_2()
+	{
+		 document.getElementById("form_2").submit();
+	}
+	function submit_form_3()
+	{
+		 document.getElementById("form_3").submit();
+	}
+	function submit_form_4()
+	{
+		 document.getElementById("form_4").submit();
+	}
+	function submit_form_5()
+	{
+		 document.getElementById("form_5").submit();
+	}
+	
+	
+	var tableToExcel = (function() {
+	  var uri = 'data:application/vnd.ms-excel;base64,'
+		, template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+		, base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+		, format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+	  return function(table, name) {
+		if (!table.nodeType) table = document.getElementById(table)
+		var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+		window.location.href = uri + base64(format(template, ctx))
+	  }
+	})();
+</script>
+</body>
+</html>
